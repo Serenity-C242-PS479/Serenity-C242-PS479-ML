@@ -65,6 +65,7 @@ def predict_sentiment_with_proba(text, model, tokenizer, max_seq_length):
     predicted_class = np.argmax(prediction)
     confidence = prediction[0][predicted_class]
     return sentiment_map[predicted_class], confidence
+
 text = "cantik banget sayang"
 sentiment, confidence = predict_sentiment_with_proba(text, model, tokenizer, max_seq_length)
 print(f"Prediksi Sentimen: {sentiment}, Confidence: {confidence:.2f}")
