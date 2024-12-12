@@ -71,3 +71,5 @@ sentiment, confidence = predict_sentiment_with_proba(text, model, tokenizer, max
 print(f"Prediksi Sentimen: {sentiment}, Confidence: {confidence:.2f}")
 ```
 
+## Deployment
+The created model is deployed using Google Cloud Function. To deploy the model using Google Cloud Function:
