@@ -72,4 +72,77 @@ print(f"Prediksi Sentimen: {sentiment}, Confidence: {confidence:.2f}")
 ```
 
 ## Deployment
-The created model is deployed using Google Cloud Function. To deploy the model using Google Cloud Function:
+The created model is deployed using Google Cloud Functions. Below are the steps to deploy the model:
+
+### 1. Prepare Your Environment
+Ensure that you have:
+- A Google Cloud Platform (GCP) account.
+- The Google Cloud SDK installed on your local machine.
+- Access to a GCP project where you have permission to deploy cloud functions.
+- A bucket in Google Cloud Storage containing the model and scaler files.
+
+### 2. Create the Cloud Function Code
+Save the provided Python code in a file, e.g., `main.py`. This file contains the logic for downloading the model and scaler, processing input data, and making predictions.
+
+### 3. Prepare the Requirements File
+Create a `requirements.txt` file with the necessary dependencies:
+```plaintext
+google-cloud-storage==2.14.0
+tensorflow==2.17.1
+pandas==2.1.1
+scikit-learn==1.3.1
+```
+This file ensures that the required libraries are installed in the Cloud Function environment.
+
+### 4. Deploy the Cloud Function
+Use the following steps to deploy the function:
+
+#### 1. Navigate to the Directory
+Go to the directory where main.py and requirements.txt are stored:
+```bash
+cd /path/to/your/code
+```
+
+#### 2. Deploy the Cloud Function
+Use the gcloud CLI to deploy the function:
+```bash
+gcloud functions deploy predictSocialMediaUsage \
+    --runtime python311 \
+    --trigger-http \
+    --allow-unauthenticated \
+    --region us-central1 \
+    --entry-point predict_social_media_usage
+```
+- --runtime: Specifies the runtime (e.g., Python 3.11).
+- --trigger-http: Indicates that the function will be triggered via HTTP.
+- --allow-unauthenticated: Makes the function publicly accessible.
+- --region: Sets the deployment region (e.g., us-central1).
+- --entry-point: Points to the main function (in this case, predict_social_media_usage).
+
+### 5. Test the Cloud Function
+Once deployed, the function will return a URL. You can test it using tools like curl or Postman. Example Request:
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+        "Age": 25,
+        "Facebook": 1,
+        "Instagram": 0,
+        "Reddit": 1,
+        "Threads": 0,
+        "TikTok": 1,
+        "X": 0,
+        "YouTube": 1,
+        "00:00:00": 0.5,
+        "01:00:00": 0.2,
+        ...
+        "23:00:00": 0.1
+      }' \
+  https://<your-cloud-function-url>
+```
+Example Response:
+```json
+{
+  "status": "istirahat!"
+}
+```
