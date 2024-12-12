@@ -85,7 +85,7 @@ Ensure that you have:
 Save the provided Python code in a file, e.g., `main.py`. This file contains the logic for downloading the model and scaler, processing input data, and making predictions.
 
 ### 3. Prepare the Requirements File
-Create a `requirements.txt` file with the necessary dependencies:
+Create a `requirements.txt` file with the necessary dependencies. Example:
 ```plaintext
 google-cloud-storage==2.14.0
 tensorflow==2.17.1
@@ -151,7 +151,62 @@ Example Response:
 ```bash
 https://asia-southeast2-c242-ps479.cloudfunctions.net/serenity-break-reminder-function
 ```
+Request Payload:
+```json
+{
+    "Age": 25,
+    "Facebook": 1,
+    "Instagram": 0,
+    "Reddit": 1,
+    "Threads": 1,
+    "TikTok": 0,
+    "X": 0,
+    "YouTube": 0,
+    "00:00:00": 1,
+    "01:00:00": 0,
+    "02:00:00": 0,
+    "03:00:00": 0,
+    "04:00:00": 0,
+    "05:00:00": 0,
+    "06:00:00": 1,
+    "07:00:00": 1,
+    "08:00:00": 0,
+    "09:00:00": 1,
+    "10:00:00": 0,
+    "11:00:00": 1,
+    "12:00:00": 1,
+    "13:00:00": 0,
+    "14:00:00": 0,
+    "15:00:00": 0,
+    "16:00:00": 0,
+    "17:00:00": 0,
+    "18:00:00": 0,
+    "19:00:00": 0,
+    "20:00:00": 0,
+    "21:00:00": 0,
+    "22:00:00": 0,
+    "23:00:00": 0
+}
+```
+Response:
+```json
+{
+    "status": "tidak perlu istirahat"
+}
+```
 ### 2. API Predict Sentiment URL:
 ```bash
 https://asia-southeast2-c242-ps479.cloudfunctions.net/serenity-sentiment-function
+```
+Request Payload:
+```json
+{
+    "text": "Kamu lagi apa ?"
+}
+```
+Response:
+```json
+{
+    "sentiment": "Positive"
+}
 ```
