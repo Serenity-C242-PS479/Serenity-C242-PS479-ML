@@ -110,7 +110,7 @@ gcloud functions deploy predictSocialMediaUsage \
     --runtime python311 \
     --trigger-http \
     --allow-unauthenticated \
-    --region us-central1 \
+    --region asia-southeast-2 \
     --entry-point predict_social_media_usage
 ```
 - --runtime: Specifies the runtime (e.g., Python 3.11).
@@ -145,4 +145,13 @@ Example Response:
 {
   "status": "istirahat!"
 }
+```
+## API URL
+### 1. API Break Reminder URL:
+```bash
+https://asia-southeast2-c242-ps479.cloudfunctions.net/serenity-break-reminder-function
+```
+### 2. API Predict Sentiment URL:
+```bash
+https://asia-southeast2-c242-ps479.cloudfunctions.net/serenity-sentiment-function
 ```
